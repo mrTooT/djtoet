@@ -1,21 +1,96 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
+// DJ Toet — Astro index.astro (pure Astro implementation, no external React components)
+// Save as `src/pages/index.astro`
+// This file inlines SVGs and markup so Astro can render it directly (no @astrojs/react required).
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
 
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+
+const email = 'bookings@djtoet.com';
+const year = new Date().getFullYear();
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
-</Layout>
+
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DJ Toet — Soundtrack voor jullie beste momenten</title>
+<!-- Optional: include your Tailwind build or other global CSS in your Astro project -->
+<meta name="description" content="DJ Toet — boek voor bruiloften, feesten en events. Melodische house en sfeer op maat." />
+<style>
+/* Minimal fallback styles so the page looks acceptable without Tailwind. Remove if you use Tailwind. */
+:root { --gold: #b8892e; --bg: #000; --card: rgba(255,255,255,0.04); }
+html,body{height:100%;}
+body{margin:0;background:var(--bg);color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+.container{max-width:1100px;margin:0 auto;padding:1.5rem}
+header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0}
+nav a{color:inherit;text-decoration:none;margin-left:.75rem}
+h1,h2,h3{margin:0}
+.grid{display:grid;gap:1.25rem}
+.cols-2{grid-template-columns:1fr 1fr}
+.card{background:var(--card);padding:1rem;border-radius:.6rem}
+.btn{background:var(--gold);color:#000;padding:.6rem 1rem;border-radius:.6rem;font-weight:700;text-decoration:none;display:inline-block}
+footer{color:#9aa0a6}
+/* flyer area styles */
+.flyer{background:#0b0b0b;padding:1.25rem;border-radius:.5rem}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<div style="display:flex;align-items:center;gap:1rem">
+<!-- Inline logo SVG -->
+<svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="DJ Toet logo">
+<rect width="64" height="64" rx="12" fill="#0b0b0b" />
+<circle cx="20" cy="20" r="8" stroke="#b8892e" stroke-width="2" />
+<path d="M34 18c4-2 8 1 8 5s-4 7-8 5c-3-1.5-6-5-6-7s3-4.5 6-3z" fill="#b8892e" opacity="0.95" />
+<text x="32" y="50" fill="#b8892e" font-size="10" font-weight="700" font-family="sans-serif" text-anchor="middle">TOET</text>
+</svg>
+
+
+<div>
+<h1 style="font-size:1.2rem;font-weight:800">DJ Toet</h1>
+<div style="color:#bfbfbf;font-size:.9rem">Melodische grooves • ceremonies • feesten</div>
+</div>
+</div>
+
+
+<nav>
+<a href="#about">Over</a>
+<a href="#gigs">Optredens</a>
+<a href="#flyer">Flyer</a>
+<a class="btn" href={`mailto:${email}`}>Aanmelden</a>
+</nav>
+</header>
+
+
+<main>
+<section id="hero" style="margin-top:1.5rem">
+<div class="grid cols-2">
+<div>
+<h2 style="font-size:2rem;line-height:1.05">DJ Toet — Soundtrack voor jullie beste momenten</h2>
+<p style="color:#cfcfcf;margin-top:0.75rem">Ben je op zoek naar een DJ die sfeer, smaak en drive combineert voor bruiloften, private parties en club-sets? DJ Toet brengt warme, melodische sets op maat — stijlvol, betrouwbaar en memorabel.</p>
+
+
+<ul style="color:#ccc;margin-top:1rem;line-height:1.6">
+<li>✅ Bruiloften & ceremonies</li>
+<li>✅ Private parties & bedrijfsevenementen</li>
+<li>✅ Club- en lounge-sets</li>
+</ul>
+
+
+<div style="margin-top:1rem">
+<a class="btn" href={`mailto:${email}?subject=Boeking%20DJ%20Toet`}>Aanmelden / Vraag prijs</a>
+</div>
+</div>
+
+
+<div style="display:flex;justify-content:center;align-items:center;flex-direction:column">
+<!-- Disco ball (static SVG, no JS mapping) -->
+<svg width="220" height="220" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+<defs>
+<linearGradient id="g1" x1="0" x2="1">
+<stop offset="0" stop-color="#fff" stop-opacity="0.9" />
+<stop offset="1" stop-color="#c6a25a" stop-opacity="0.9" />
+</linearGradient>
