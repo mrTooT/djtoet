@@ -1,8 +1,8 @@
 ---
-// DJ Toet — Astro index.astro (pure Astro implementation, no external React components)
+// DJ Toet — Astro index.astro (Bootstrap mobile-first version)
 // Save as `src/pages/index.astro`
-// This file inlines SVGs and markup so Astro can render it directly (no @astrojs/react required).
-
+// Includes Bootstrap 5, golden disco-ball logo, confetti background, stock photos placeholders
+---
 
 
 const email = 'bookings@djtoet.com';
@@ -16,81 +16,82 @@ const year = new Date().getFullYear();
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DJ Toet — Soundtrack voor jullie beste momenten</title>
-<!-- Optional: include your Tailwind build or other global CSS in your Astro project -->
-<meta name="description" content="DJ Toet — boek voor bruiloften, feesten en events. Melodische house en sfeer op maat." />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-/* Minimal fallback styles so the page looks acceptable without Tailwind. Remove if you use Tailwind. */
-:root { --gold: #b8892e; --bg: #000; --card: rgba(255,255,255,0.04); }
-html,body{height:100%;}
-body{margin:0;background:var(--bg);color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
-.container{max-width:1100px;margin:0 auto;padding:1.5rem}
-header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0}
-nav a{color:inherit;text-decoration:none;margin-left:.75rem}
-h1,h2,h3{margin:0}
-.grid{display:grid;gap:1.25rem}
-.cols-2{grid-template-columns:1fr 1fr}
-.card{background:var(--card);padding:1rem;border-radius:.6rem}
-.btn{background:var(--gold);color:#000;padding:.6rem 1rem;border-radius:.6rem;font-weight:700;text-decoration:none;display:inline-block}
-footer{color:#9aa0a6}
-/* flyer area styles */
-.flyer{background:#0b0b0b;padding:1.25rem;border-radius:.5rem}
+body { background-color: #000; color:#fff; font-family: system-ui, -apple-system, Roboto, sans-serif; }
+h1,h2,h3,h4 { font-family: 'Bebas Neue', sans-serif; letter-spacing:1px; }
+.btn-gold { background:#b8892e; color:#000; font-weight:700; }
+.btn-gold:hover { background:#d9a947; color:#000; }
+.bg-confetti {
+background-image: url('https://www.transparenttextures.com/patterns/golden-confetti.png');
+background-repeat: repeat;
+background-size: 300px;
+}
+.logo-svg text { font-size: 14px; font-weight:700; fill:#b8892e; }
+.service-card img { max-height:120px; object-fit:cover; border-radius:.5rem; }
 </style>
 </head>
-<body>
-<div class="container">
-<header>
-<div style="display:flex;align-items:center;gap:1rem">
-<!-- Inline logo SVG -->
-<svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="DJ Toet logo">
-<rect width="64" height="64" rx="12" fill="#0b0b0b" />
-<circle cx="20" cy="20" r="8" stroke="#b8892e" stroke-width="2" />
-<path d="M34 18c4-2 8 1 8 5s-4 7-8 5c-3-1.5-6-5-6-7s3-4.5 6-3z" fill="#b8892e" opacity="0.95" />
-<text x="32" y="50" fill="#b8892e" font-size="10" font-weight="700" font-family="sans-serif" text-anchor="middle">TOET</text>
+<body class="bg-confetti">
+<header class="container py-3 d-flex justify-content-between align-items-center">
+<div class="d-flex align-items-center gap-3">
+<!-- Disco Ball Logo -->
+<svg width="60" height="60" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="DJ Toet logo">
+<circle cx="100" cy="100" r="90" fill="#0b0b0b" stroke="#b8892e" stroke-width="6" />
+<line x1="60" y1="60" x2="140" y2="140" stroke="#b8892e" stroke-width="2" />
+<line x1="60" y1="140" x2="140" y2="60" stroke="#b8892e" stroke-width="2" />
+<circle cx="100" cy="40" r="10" fill="#b8892e" />
+<text x="100" y="190" text-anchor="middle">DJ TOET</text>
 </svg>
-
-
 <div>
-<h1 style="font-size:1.2rem;font-weight:800">DJ Toet</h1>
-<div style="color:#bfbfbf;font-size:.9rem">Melodische grooves • ceremonies • feesten</div>
+<h1 class="mb-0 fs-3">DJ Toet</h1>
+<div class="text-muted small">Melodische grooves • ceremonies • feesten</div>
 </div>
 </div>
-
-
-<nav>
-<a href="#about">Over</a>
-<a href="#gigs">Optredens</a>
-<a href="#flyer">Flyer</a>
-<a class="btn" href={`mailto:${email}`}>Aanmelden</a>
+<nav class="d-none d-md-flex gap-3">
+<a href="#about" class="text-white text-decoration-none">Over</a>
+<a href="#gigs" class="text-white text-decoration-none">Optredens</a>
+<a href="#flyer" class="text-white text-decoration-none">Flyer</a>
+<a href={`mailto:${email}`} class="btn btn-gold">Aanmelden</a>
 </nav>
 </header>
 
 
-<main>
-<section id="hero" style="margin-top:1.5rem">
-<div class="grid cols-2">
-<div>
-<h2 style="font-size:2rem;line-height:1.05">DJ Toet — Soundtrack voor jullie beste momenten</h2>
-<p style="color:#cfcfcf;margin-top:0.75rem">Ben je op zoek naar een DJ die sfeer, smaak en drive combineert voor bruiloften, private parties en club-sets? DJ Toet brengt warme, melodische sets op maat — stijlvol, betrouwbaar en memorabel.</p>
-
-
-<ul style="color:#ccc;margin-top:1rem;line-height:1.6">
-<li>✅ Bruiloften & ceremonies</li>
-<li>✅ Private parties & bedrijfsevenementen</li>
-<li>✅ Club- en lounge-sets</li>
-</ul>
-
-
-<div style="margin-top:1rem">
-<a class="btn" href={`mailto:${email}?subject=Boeking%20DJ%20Toet`}>Aanmelden / Vraag prijs</a>
+<main class="container text-center">
+<!-- Hero with stock photo background -->
+<section id="hero" class="my-4">
+<div class="card bg-dark text-white border-0">
+<img src="https://images.pexels.com/photos/1699162/pexels-photo-1699162.jpeg?auto=compress&cs=tinysrgb&w=1200" class="card-img" alt="Disco ball and people dancing">
+<div class="card-img-overlay d-flex flex-column justify-content-center align-items-center bg-dark bg-opacity-50">
+<h2 class="display-4">DJ Toet — Soundtrack voor jullie beste momenten</h2>
+<p class="lead">Van bruiloften tot clubnachten, altijd sfeer, smaak en drive.</p>
+<a href={`mailto:${email}?subject=Boeking%20DJ%20Toet`} class="btn btn-gold btn-lg mt-3">Aanmelden / Vraag prijs</a>
 </div>
 </div>
+</section>
 
 
-<div style="display:flex;justify-content:center;align-items:center;flex-direction:column">
-<!-- Disco ball (static SVG, no JS mapping) -->
-<svg width="220" height="220" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-<defs>
-<linearGradient id="g1" x1="0" x2="1">
-<stop offset="0" stop-color="#fff" stop-opacity="0.9" />
-<stop offset="1" stop-color="#c6a25a" stop-opacity="0.9" />
-</linearGradient>
+<!-- About section -->
+<section id="about" class="my-5 text-start">
+<h3 class="fs-2">Over DJ Toet</h3>
+<p class="text-light">DJ Toet combineert melodie, energie en timing. Beschikbaar voor ceremoniële momenten, dansvloeren en sfeervolle achtergrondmuziek. Professionele gear, flexibele opbouw en altijd een luisterend oor voor jouw wensen.</p>
+</section>
+
+
+<!-- Services with cards -->
+<section id="gigs" class="my-5">
+<h3 class="fs-2">Voor wie</h3>
+<div class="row g-4 mt-3">
+<div class="col-12 col-md-4">
+<div class="card bg-dark service-card h-100">
+<img src="https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg?auto=compress&cs=tinysrgb&w=800" class="card-img-top" alt="Wedding">
+<div class="card-body">
+<h4 class="card-title">Bruiloften</h4>
+<p class="card-text">Stijlvolle ceremonies en recepties — afgestemde playlists en live-mixing waar gewenst.</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-4">
+<div class="card bg-dark service-card h-100">
+<img src="https://images.pexels.com/photos/3171838/pexels-photo-3171838.jpeg?auto=compress&cs=tinysrgb&w=800" class="card-img-top" alt="Party">
+</html>
